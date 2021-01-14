@@ -48,18 +48,19 @@ widgets:
     # Table of contents widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: right
+        position: left
         type: toc
     # Categories widget configurations
-    - 
-        position: left
-        type: recent_posts
-    -
+    # - 
+    #     position: left
+    #     type: recent_posts
+    # -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
-        type: categories
+        # position: left
+        # type: categories
     # Tags widget configurations
-    -
+    # -
         # Where should the widget be placed, left sidebar or right sidebar
-        position: left
-        type: tags
+        # position: left
+        # type: tags
+    

@@ -8,21 +8,17 @@
 
   function applyNight(value) {
       if (value.toString() === 'true') {
+        document.body.classList.remove('white');
           document.body.classList.add('night');
-        //   if (document.querySelector('.canvas-snow')) {
-        //       document.querySelector('.canvas-snow').setAttribute('style', 'display: none');
-        //   }
-          if (document.querySelector('.snow-container')) {
-              document.querySelector('.snow-container').setAttribute("style", "z-index: 0")
-          }
+          // if (document.querySelector('.snow-container')) {
+          //     document.querySelector('.snow-container').setAttribute("style", "z-index: 0")
+          // }
       } else {
           document.body.classList.remove('night');
-        //   if (document.querySelector('.canvas-snow')) {
-        //       document.querySelector('.canvas-snow').setAttribute('style', 'display: block');
-        //   }
-         if (document.querySelector('.snow-container')) {
-            document.querySelector('.snow-container').setAttribute("style", "z-index: 10001")
-         }
+          document.body.classList.add('white');
+          //  if (document.querySelector('.snow-container')) {
+          //     document.querySelector('.snow-container').setAttribute("style", "z-index: 10001")
+          //  }
      }
      searchDisqusThread(value.toString())
   }
