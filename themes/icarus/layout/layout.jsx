@@ -16,7 +16,7 @@ module.exports = class extends Component {
 
         return <html lang={language ? language.substr(0, 2) : ''}>
             <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-3-column`}>
+            <body class={`is-3-column white`}>
                 {/* <div class="canvas-snow"> */}
                     {/* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
                     <script type="text/javascript" src="/js/snow.js"></script>
