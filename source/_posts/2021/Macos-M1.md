@@ -36,7 +36,7 @@ arm 版本的 vscode 没办法进行配置同步，虽然一直在同步中，�
 
 ## nvm 的问题
 
-就目前来讲...nvm 似乎还没完全适配 M1，安装之后 server install 各种慢，真的是有些受不了...[nvm install node fails to install on macOS Big Sur M1 Chip](https://github.com/nvm-sh/nvm/issues/2350) [nodejs](https://nodejs.org/zh-cn/) 了。用 **Rosetta** 跑起来完美，server install 都比之间快了不止一个档次。
+就目前来讲...nvm 似乎还没完全适配 M1，安装之后 server install 各种慢，真的是有些受不了...[nvm install node fails to install on macOS Big Sur M1 Chip](https://github.com/nvm-sh/nvm/issues/2350)。卸载 nvm 后，直接从官方下载 [nodejs](https://nodejs.org/zh-cn/) ，然后用 **Rosetta** 跑起来完美，server install 都比之前快了不止一个档次。
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
