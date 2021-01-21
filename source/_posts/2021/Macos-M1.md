@@ -28,7 +28,6 @@ arm 版本的 vscode 没办法进行配置同步，虽然一直在同步中，�
 
 [解决方法](https://github.com/hawtim/blog/issues/10) **switchhosts 是真的好用**
 
-
 ## homebrew 问题...
 
 这个真的是有些恶心了...网上找了各种帖子，各种尝试，都没有成功，最终通过 youtube 上大佬发布的[视频](https://www.youtube.com/watch?v=nv2ylxro7rM)成功解决。
@@ -37,6 +36,42 @@ arm 版本的 vscode 没办法进行配置同步，虽然一直在同步中，�
 ## nvm 的问题
 
 就目前来讲...nvm 似乎还没完全适配 M1，安装之后 server install 各种慢，真的是有些受不了...[nvm install node fails to install on macOS Big Sur M1 Chip](https://github.com/nvm-sh/nvm/issues/2350)。卸载 nvm 后，直接从官方下载 [nodejs](https://nodejs.org/zh-cn/) ，然后用 **Rosetta** 跑起来完美，server install 都比之前快了不止一个档次。
+
+## oh my zsh
+
+**安装 oh my zsh**
+
+使用curl安装
+
+{% codeblock "bash zsh" %}
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+{% endcodeblock %}
+
+**配置主题**
+
+oh-my-zsh 提供了很多主题，可以通过命令查看当前使用的主题：
+
+{% codeblock "bash zsh" %}
+ls ~/.oh-my-zsh/themes
+{% endcodeblock %}
+
+可以通过编辑 .zshrc 文件来修改你的主题
+
+{% codeblock "bash zsh" %}
+vim ~/.zshrc
+{% endcodeblock %}
+
+{% codeblock "bash zsh" %}
+source ~/.zshrc
+{% endcodeblock %}
+
+**zsh-autosuggestions 自动补全插件**
+
+[zsh-autosuggestions INSTALL](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
+
+`重启终端即可`
+
+<br>
 
 <article class="message message-immersive is-warning">
 <div class="message-body">
