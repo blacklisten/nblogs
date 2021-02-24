@@ -25,6 +25,27 @@ npm list -g --depth 0
 yarn global list --depth 0
 {% endcodeblock %}
 
+**检测可以更新的包**
+可选择性更新
+{% codeblock "bash zsh" lang:zsh %}
+npm install npm-check -g
+npm-check -u
+
+yarn upgrade-interactive
+{% endcodeblock %}
+
+<!-- more -->
+
+{% codeblock "bash zsh" lang:zsh %}
+npm install npm-check-updates -g
+ncu // 检测当前项目中可用的更新
+ncu -u // 更新当前项目package.json中可更新包到最新版本，之后执行npm install就可以直接更新掉了
+ncu -g // 检测全局可用更新
+{% endcodeblock %}
+
+[npm-check](https://www.npmjs.com/package/npm-check)
+[npm-check-updates](https://www.npmjs.com/package/npm-check-updates)
+
 **查看当前包命名是否被使用**
 
 {% codeblock "bash zsh" lang:bash %}
@@ -39,8 +60,6 @@ npm view <packageName>
 npm view <packageName> version # 查看某个模块的最新版本
 npm view <packageName> versions # 查看某个模块的所有历史版本
 {% endcodeblock %}
-
-<!-- more -->
 
 ## package.json详解
 
