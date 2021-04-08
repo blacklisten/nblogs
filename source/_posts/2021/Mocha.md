@@ -10,8 +10,8 @@ providers:
     cdn: loli
     fontcdn: loli
     iconcdn: loli
-cover: /gallery/covers/guimiezhiren3.jpg
-thumbnail: /gallery/covers/guimiezhiren3.jpg
+cover: /gallery/covers/23.jpg
+thumbnail: /gallery/covers/23.jpg
 ---
 
 使用 mocha.js chai.js 完成对工具库的单元测试
