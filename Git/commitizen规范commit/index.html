@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>commitizen规范commit - Blacklisten&#039;blogs</title><meta description="在多人协作的项目中，如果Git提交说明过于混乱，是不利于代码review的。如果Git提交说明足够精准、详细，不仅有利于代码的review也有利于后期排查问题，甚至我们可以根据commit信息生成响应日志。本文主要介绍通过cz工具，以及附和Angular规范的提交说明来规范commit信息。也可以查看vuejs，他的提交说明就是根据Angular规范来的。本文示例: cz-example"><meta property="og:type" content="blog"><meta property="og:title" content="commitizen规范commit"><meta property="og:url" content="https://www.blacklisten.cn/Git/commitizen%E8%A7%84%E8%8C%83commit/"><meta property="og:site_name" content="Blacklisten&#039;blogs"><meta property="og:description" content="在多人协作的项目中，如果Git提交说明过于混乱，是不利于代码review的。如果Git提交说明足够精准、详细，不仅有利于代码的review也有利于后期排查问题，甚至我们可以根据commit信息生成响应日志。本文主要介绍通过cz工具，以及附和Angular规范的提交说明来规范commit信息。也可以查看vuejs，他的提交说明就是根据Angular规范来的。本文示例: cz-example"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.blacklisten.cn/gallery/covers/wallhaven-2erp9g.jpg"><meta property="article:published_time" content="2020-09-24T00:00:00.000Z"><meta property="article:author" content="blacklisten"><meta property="article:tag" content="commitizen"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/gallery/covers/wallhaven-2erp9g.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.blacklisten.cn/Git/commitizen%E8%A7%84%E8%8C%83commit/"},"headline":"Blacklisten'blogs","image":["https://www.blacklisten.cn/gallery/covers/wallhaven-2erp9g.jpg"],"datePublished":"2020-09-24T00:00:00.000Z","author":{"@type":"Person","name":"blacklisten"},"description":"在多人协作的项目中，如果Git提交说明过于混乱，是不利于代码review的。如果Git提交说明足够精准、详细，不仅有利于代码的review也有利于后期排查问题，甚至我们可以根据commit信息生成响应日志。本文主要介绍通过cz工具，以及附和Angular规范的提交说明来规范commit信息。也可以查看vuejs，他的提交说明就是根据Angular规范来的。本文示例: cz-example"}</script><link rel="canonical" href="https://www.blacklisten.cn/Git/commitizen%E8%A7%84%E8%8C%83commit/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?68ab0f2c8b23735e70a585f85d89b4d3";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-117852294-3" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-117852294-3');</script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Blacklisten'blogs" type="application/atom+xml">
+</head><body class="is-3-column white"><script type="text/javascript" src="/js/imaegoo/night.js"></script><canvas id="universe"></canvas><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Blacklisten</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="My Github" href="https://github.com/blacklisten"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/gallery/covers/wallhaven-2erp9g.jpg" alt="commitizen规范commit"></span></div><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2020-09-24</time></span><span class="level-item"><a class="link-muted" href="/categories/Git/">Git</a></span><span class="level-item">10 分钟读完 (大约1486个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">commitizen规范commit</h1><div class="content"><p>在多人协作的项目中，如果<code>Git</code>提交说明过于混乱，是不利于代码<strong>review</strong>的。如果<code>Git</code>提交说明足够精准、详细，不仅有利于代码的<strong>review</strong>也有利于后期排查问题，甚至我们可以根据<code>commit</code>信息生成响应日志。<br>本文主要介绍通过<a target="_blank" rel="noopener" href="https://github.com/commitizen/cz-cli">cz</a>工具，以及附和<code>Angular</code>规范的提交说明来规范<code>commit</code>信息。也可以查看<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue">vuejs</a>，他的提交说明就是根据<code>Angular</code>规范来的。<br>本文示例: <a target="_blank" rel="noopener" href="https://github.com/blacklisten/cz-example">cz-example</a></p>
+<a id="more"></a>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight bash"><figcaption><span>Git Bash/Shell</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g commitizen</span><br><span class="line">npm install @commitlint/cli @commitlint/config-conventional conventional-changelog conventional-changelog-cli cz-conventional-changelog husky -D</span><br></pre></td></tr></tbody></table></figure>
+
+<p>创建<strong>commitlint.config.js</strong></p>
+<figure class="highlight javascript"><figcaption><span>javascript</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = {</span><br><span class="line">  <span class="keyword">extends</span>: [<span class="string">'@commitlint/config-conventional'</span>]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>修改<strong>package.json</strong></p>
+<figure class="highlight"><figcaption><span>点击展开代码 &gt;folded</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">"scripts": {</span><br><span class="line">    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 &amp;&amp; git add CHANGELOG.md"</span><br><span class="line">},</span><br><span class="line">"config": {</span><br><span class="line">    "commitizen": {</span><br><span class="line">        "path": "./node_modules/cz-conventional-changelog"</span><br><span class="line">    }</span><br><span class="line">},</span><br><span class="line">"husky": {</span><br><span class="line">    "hooks": {</span><br><span class="line">        "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="提交流程"><a href="#提交流程" class="headerlink" title="提交流程"></a>提交流程</h2><ul>
+<li><p>git cz</p>
+</li>
+<li><p>Select the type of change that you’re committing</p>
+<ul>
+<li>feat:     A new feature</li>
+<li>fix:      A bug fix</li>
+<li>docs:     Documentation only changes</li>
+<li>style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)</li>
+<li>refactor: A code change that neither fixes a bug nor adds a feature</li>
+<li>perf:     A code change that improves performance</li>
+<li>test:     Adding missing tests or correcting existing tests</li>
+</ul>
+</li>
+<li><p>What is the scope of this change (e.g. component or file name): (press enter to skip)   填写所修改的组件、文件名。<strong>可跳过</strong></p>
+</li>
+<li><p>Write a short, imperative tense description of the change 进行一个简短的描述  max 94</p>
+</li>
+<li><p>Provide a longer description of the change 进行一个详细的描述<strong>可跳过</strong></p>
+</li>
+<li><p>Are there any breaking changes? 是否发生重大改变 <strong>可跳过</strong></p>
+<ul>
+<li>A BREAKING CHANGE commit requires a body. Please enter a longer description of the commit itself：重大改变的描述</li>
+</ul>
+</li>
+<li><p>git pull</p>
+</li>
+<li><p>git push</p>
+</li>
+<li><p>在merge到master之前需要生成CHANGELOG，之后合并最近的两个commit即可merge</p>
+</li>
+</ul>
+<h2 id="具体解释"><a href="#具体解释" class="headerlink" title="具体解释"></a>具体解释</h2><h3 id="规范的Git提交说明"><a href="#规范的Git提交说明" class="headerlink" title="规范的Git提交说明"></a>规范的Git提交说明</h3><ul>
+<li>提供更多的历史信息，方便快速浏览</li>
+<li>可以过滤某些<code>commit</code>，便于筛选代码<code>review</code></li>
+<li>可以追踪<code>commit</code>生成更新日志</li>
+<li>可以关联<strong>issues</strong></li>
+</ul>
+<h4 id="Git提交说明结构"><a href="#Git提交说明结构" class="headerlink" title="Git提交说明结构"></a><code>Git</code>提交说明结构</h4><p><code>Git</code><strong>提交说明</strong>可分为三个部分：<strong>Header、Body</strong>和<strong>Footer</strong>。</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Header</span>&gt;</span> <span class="tag">&lt;<span class="name">Body</span>&gt;</span> <span class="tag">&lt;<span class="name">Footer</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Header"><a href="#Header" class="headerlink" title="Header"></a>Header</h4><p><strong>Header</strong>部分包括三个字段<strong>type（必需）</strong>、<em>scope（可选）</em>和<strong>subject（必需）</strong>。</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">type</span>&gt;</span>(<span class="tag">&lt;<span class="name">scope</span>&gt;</span>): <span class="tag">&lt;<span class="name">subject</span>&gt;</span>ja</span><br></pre></td></tr></tbody></table></figure>
+
+<article class="message is-info"><div class="message-body">
+<p>Vue源码的提交说明省略了<em>scope</em>。</p>
+</div></article>
+
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p><strong>type</strong>用于说明 <code>commit</code> 的提交性质。</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>feat</td>
+<td>新增一个功能</td>
+</tr>
+<tr>
+<td>fix</td>
+<td>修复一个bug</td>
+</tr>
+<tr>
+<td>docs</td>
+<td>文档变更</td>
+</tr>
+<tr>
+<td>style</td>
+<td>代码格式（不影响功能，例如空格、分号等格式修正）</td>
+</tr>
+<tr>
+<td>refactor</td>
+<td>代码重构</td>
+</tr>
+<tr>
+<td>perf</td>
+<td>改善性能</td>
+</tr>
+<tr>
+<td>test</td>
+<td>测试</td>
+</tr>
+<tr>
+<td>build</td>
+<td>变更项目构建或外部依赖（例如scopes：<code>webpack</code>、<code>gulp</code>、<code>npm</code>等）</td>
+</tr>
+<tr>
+<td>ci</td>
+<td>更改持续集成软件的配置文件和<code>package</code>中的<code>scripts</code>命令，例如scopes：Travis、Circle等</td>
+</tr>
+<tr>
+<td>chore</td>
+<td>变更构建流程活辅助工具</td>
+</tr>
+<tr>
+<td>revert</td>
+<td>代码回退</td>
+</tr>
+</tbody></table>
+<h4 id="scope"><a href="#scope" class="headerlink" title="scope"></a>scope</h4><p><em>scope</em>说明<code>commit</code>影响的范围。<em>scope</em>依据项目而定，例如在业务项目中可以依据菜单或者功能模块划分，如果是组件库开发，则可以依据组件划分。</p>
+<article class="message is-warning"><div class="message-body">
+<p>提示：<em>scope</em>可以省略。</p>
+</div></article>
+
+<h4 id="subject"><a href="#subject" class="headerlink" title="subject"></a>subject</h4><p><strong>subject</strong>是<code>commit</code>的简短描述。</p>
+<h4 id="Body"><a href="#Body" class="headerlink" title="Body"></a>Body</h4><p><code>commit</code>的详细描述，说明代码提交的详细说明。</p>
+<h4 id="Footer"><a href="#Footer" class="headerlink" title="Footer"></a>Footer</h4><p>如果代码的提交是<strong>不兼容变更</strong>或<strong>关闭缺陷</strong>，则<strong>Footer</strong>必需，否则可以省略。</p>
+<h4 id="不兼容变更"><a href="#不兼容变更" class="headerlink" title="不兼容变更"></a>不兼容变更</h4><p>当前代码与上一个版本不兼容，则<strong>Footer</strong>以<strong>BREAKING CHANGE</strong>开头，后面是对变动的描述、以及变动的理由和迁移方法。</p>
+<h4 id="关闭缺陷"><a href="#关闭缺陷" class="headerlink" title="关闭缺陷"></a>关闭缺陷</h4><p>如果当前提交是针对特定的issue，那么可以在<strong>Footer</strong>部分填写需要关闭的单个 issue 或一系列issues。</p>
+<h3 id="Commitizen"><a href="#Commitizen" class="headerlink" title="Commitizen"></a>Commitizen</h3><p><a target="_blank" rel="noopener" href="https://github.com/commitizen/cz-cli">commitizen/cz-cli</a>是一个可以实现规范的<strong>提交说明</strong>的工具：</p>
+<p><strong>When you commit with Commitizen, you’ll be prompted to fill out any required commit fields at commit time. No more waiting until later for a git commit hook to run and reject your commit (though that can still be helpful). No more digging through CONTRIBUTING.md to find what the preferred format is. Get instant feedback on your commit message formatting and be prompted for required fields.</strong></p>
+<p>提供选择的提交信息类别，快速生成<strong>提交说明</strong>。安装cz工具:</p>
+<figure class="highlight bash"><figcaption><span>Git Bash/Shell</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g commitizen</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Commitizen适配器"><a href="#Commitizen适配器" class="headerlink" title="Commitizen适配器"></a>Commitizen适配器</h3><h4 id="cz-conventional-changelog"><a href="#cz-conventional-changelog" class="headerlink" title="cz-conventional-changelog"></a>cz-conventional-changelog</h4><p>如果需要在项目中使用<strong>commitizen</strong>生成符合AngularJS规范的<strong>提交说明</strong>，初始化<strong>cz-conventional-changelog</strong>适配器：</p>
+<figure class="highlight bash"><figcaption><span>Git Bash/Shell</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">commitizen init cz-conventional-changelog --save --save-exact</span><br></pre></td></tr></tbody></table></figure>
+
+<p>初始化命令主要进行了3件事情</p>
+<ol>
+<li>在项目中安装<strong>cz-conventional-changelog</strong> 适配器依赖</li>
+<li>将适配器依赖保存到<code>package.json</code>的<code>devDependencies</code>字段信息</li>
+<li>在<code>package.json</code>中新增<code>config.commitizen</code>字段信息，主要用于配置cz工具的适配器路径：</li>
+</ol>
+<figure class="highlight"><figcaption><span>json</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">"devDependencies": {</span><br><span class="line"> "cz-conventional-changelog": "^2.1.0"</span><br><span class="line">},</span><br><span class="line">"config": {</span><br><span class="line">  "commitizen": {</span><br><span class="line">    "path": "./node_modules/cz-conventional-changelog"</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Commitizen日志"><a href="#Commitizen日志" class="headerlink" title="Commitizen日志"></a>Commitizen日志</h3><p>如果使用了<a target="_blank" rel="noopener" href="https://github.com/commitizen/cz-cli">cz</a>工具集，配套<a target="_blank" rel="noopener" href="https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog">conventional-changelog</a>可以快速生成开发日志：</p>
+<figure class="highlight bash"><figcaption><span>Git Bash/Shell</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install conventional-changelog conventional-changelog-cli -D</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在<code>pacage.json</code>中加入生成日志命令：</p>
+<figure class="highlight"><figcaption><span>json</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 &amp;&amp; git add CHANGELOG.md"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>You could follow the following workflow</p>
+<ul>
+<li>Make changes</li>
+<li>Commit those changes</li>
+<li>Pull all the tags</li>
+<li>Run the npm version [patch|minor|major] command</li>
+<li>Push</li>
+</ul>
+<p>执行<code>npm run version</code>后可查看生产的日志<a target="_blank" rel="noopener" href="https://github.com/ziyi2/cz-example/blob/master/CHANGELOG.md">CHANGELOG.md</a>。</p>
+<article class="message is-warning"><div class="message-body">
+<p>注意要使用正确的<strong>Header</strong>的<strong>type</strong>，否则生成的日志会不准确，这里只是一个示例，生成的日志不是很严格。</p>
+</div></article>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.im/post/6844903831893966856">Cz工具集使用介绍 - 规范Git提交说明</a></p>
+<hr>
+
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a target="_blank" rel="noopener" href="https://github.com/blacklisten/nblogs/edit/site/source/_posts/2020/Commitizen.md">here</a> 
+to submit your revision.
+</div>
+</article>
+
+<p><a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-size:12px;line-height:1.2;display:inline-block;border-radius:3px" href="https://wallhaven.cc" target="_blank" rel="noopener noreferrer" title="Vector Landscape Vectors by Vecteezy"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white" viewBox="0 0 32 32"><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Vector Landscape Vectors by Vecteezy</span></a></p>
+<script>
+        document.querySelectorAll('.not-gallery-item')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="article-licensing box"><div class="licensing-title"><p>commitizen规范commit</p><p><a href="https://www.blacklisten.cn/Git/commitizen%E8%A7%84%E8%8C%83commit/">https://www.blacklisten.cn/Git/commitizen%E8%A7%84%E8%8C%83commit/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>blacklisten</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-09-24</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/commitizen/">commitizen</a></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.jpg" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/FAQ/samesite-cookies%E6%8A%A5%E9%94%99/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">SameSite cookies报错</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Git/git%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97/"><span class="level-item">Git操作指南</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.5/dist/disqusjs.css"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.5/dist/disqus.js"></script><script>new DisqusJS({
+            shortname: 'blacklisten',
+            apikey: "exTu1A9AwH0nVWvvCmSVh7H8HoTp4RUkld2NgMecCw2aYahA3g7iDtzNCxP7Quug",
+            siteName: "Blacklisten'blogs",
+            identifier: 'Git/commitizen规范commit/',
+            url: 'https://www.blacklisten.cn/Git/commitizen%E8%A7%84%E8%8C%83commit/',
+            title: "commitizen规范commit",
+            api: 'https://disqus.skk.moe/disqus/',
+            admin: "blacklisten",
+            adminLabel: "Admin",
+            nesting: 4
+        });</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex" href="#配置"><span class="mr-2">1</span><span>配置</span></a></li><li><a class="is-flex" href="#提交流程"><span class="mr-2">2</span><span>提交流程</span></a></li><li><a class="is-flex" href="#具体解释"><span class="mr-2">3</span><span>具体解释</span></a><ul class="menu-list"><li><a class="is-flex" href="#规范的Git提交说明"><span class="mr-2">3.1</span><span>规范的Git提交说明</span></a><ul class="menu-list"><li><a class="is-flex" href="#Git提交说明结构"><span class="mr-2">3.1.1</span><span>Git提交说明结构</span></a></li><li><a class="is-flex" href="#Header"><span class="mr-2">3.1.2</span><span>Header</span></a></li><li><a class="is-flex" href="#type"><span class="mr-2">3.1.3</span><span>type</span></a></li><li><a class="is-flex" href="#scope"><span class="mr-2">3.1.4</span><span>scope</span></a></li><li><a class="is-flex" href="#subject"><span class="mr-2">3.1.5</span><span>subject</span></a></li><li><a class="is-flex" href="#Body"><span class="mr-2">3.1.6</span><span>Body</span></a></li><li><a class="is-flex" href="#Footer"><span class="mr-2">3.1.7</span><span>Footer</span></a></li><li><a class="is-flex" href="#不兼容变更"><span class="mr-2">3.1.8</span><span>不兼容变更</span></a></li><li><a class="is-flex" href="#关闭缺陷"><span class="mr-2">3.1.9</span><span>关闭缺陷</span></a></li></ul></li><li><a class="is-flex" href="#Commitizen"><span class="mr-2">3.2</span><span>Commitizen</span></a></li><li><a class="is-flex" href="#Commitizen适配器"><span class="mr-2">3.3</span><span>Commitizen适配器</span></a><ul class="menu-list"><li><a class="is-flex" href="#cz-conventional-changelog"><span class="mr-2">3.3.1</span><span>cz-conventional-changelog</span></a></li></ul></li><li><a class="is-flex" href="#Commitizen日志"><span class="mr-2">3.4</span><span>Commitizen日志</span></a></li></ul></li><li><a class="is-flex" href="#参考"><span class="mr-2">4</span><span>参考</span></a></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Blacklisten</a><p class="size-small"><span>&copy; 2021 blacklisten</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="My GitHub" href="https://github.com/blacklisten"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script src="/js/main.js" defer></script><script src="/js/imaegoo/universe.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><!-- hexo injector body_end start -->
+    <script>
+    (() => {
+        function switchTab() {
+            if (!location.hash) {
+              return;
+            }
+            Array
+                .from(document.querySelectorAll('.tab-content'))
+                .forEach($tab => {
+                    $tab.classList.add('is-hidden');
+                });
+            Array
+                .from(document.querySelectorAll('.tabs li'))
+                .forEach($tab => {
+                    $tab.classList.remove('is-active');
+                });
+            const $activeTab = document.querySelector(location.hash);
+            if ($activeTab) {
+                $activeTab.classList.remove('is-hidden');
+            }
+            const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+            if ($tabMenu) {
+                $tabMenu.parentElement.classList.add('is-active');
+            }
+        }
+        switchTab();
+        window.addEventListener('hashchange', switchTab, false);
+    })();
+    </script>
+    <!-- hexo injector body_end end --></body></html>

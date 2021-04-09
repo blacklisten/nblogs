@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Electron学习笔记 - Blacklisten&#039;blogs</title><meta description="记录自己学习Electron所整理出来的一些学习笔记。仅为个人笔记，所以写的不好，不够清晰，只会留下当时的部分思路，作为后来有问题时的速查笔记。大部分摘自官方文档，文档太长，只挑了当时的重点记录。"><meta property="og:type" content="blog"><meta property="og:title" content="Electron学习笔记"><meta property="og:url" content="https://www.blacklisten.cn/Learning/electron%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><meta property="og:site_name" content="Blacklisten&#039;blogs"><meta property="og:description" content="记录自己学习Electron所整理出来的一些学习笔记。仅为个人笔记，所以写的不好，不够清晰，只会留下当时的部分思路，作为后来有问题时的速查笔记。大部分摘自官方文档，文档太长，只挑了当时的重点记录。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.blacklisten.cn/gallery/covers/wallhaven-83l1oy.jpg"><meta property="article:published_time" content="2020-07-09T17:10:31.000Z"><meta property="article:author" content="blacklisten"><meta property="article:tag" content="Electron"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/gallery/covers/wallhaven-83l1oy.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.blacklisten.cn/Learning/electron%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"},"headline":"Blacklisten'blogs","image":["https://www.blacklisten.cn/gallery/covers/wallhaven-83l1oy.jpg"],"datePublished":"2020-07-09T17:10:31.000Z","author":{"@type":"Person","name":"blacklisten"},"description":"记录自己学习Electron所整理出来的一些学习笔记。仅为个人笔记，所以写的不好，不够清晰，只会留下当时的部分思路，作为后来有问题时的速查笔记。大部分摘自官方文档，文档太长，只挑了当时的重点记录。"}</script><link rel="canonical" href="https://www.blacklisten.cn/Learning/electron%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/github.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?68ab0f2c8b23735e70a585f85d89b4d3";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=UA-117852294-3" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'UA-117852294-3');</script><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Blacklisten'blogs" type="application/atom+xml">
+</head><body class="is-3-column white"><script type="text/javascript" src="/js/imaegoo/night.js"></script><canvas id="universe"></canvas><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">Blacklisten</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item night" id="night-nav" title="Night Mode" href="javascript:;"><i class="fas fa-moon" id="night-icon"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="My Github" href="https://github.com/blacklisten"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/gallery/covers/wallhaven-83l1oy.jpg" alt="Electron学习笔记"></span></div><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2020-07-09</time></span><span class="level-item"><a class="link-muted" href="/categories/Learning/">Learning</a></span><span class="level-item">2 分钟读完 (大约314个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">Electron学习笔记</h1><div class="content"><p>记录自己学习<code>Electron</code>所整理出来的一些学习笔记。仅为个人笔记，所以写的不好，不够清晰，只会留下当时的部分思路，作为后来有问题时的速查笔记。大部分摘自官方文档，文档太长，只挑了当时的重点记录。</p>
+<a id="more"></a>
+
+<h2 id="webview"><a href="#webview" class="headerlink" title="webview"></a>webview</h2><blockquote>
+<p>By default the webview tag is disabled in Electron &gt;= 5. 在构造 BrowserWindow 时，需要通过设置 webviewTag webPreferences选项来启用标签</p>
+</blockquote>
+<p>当Electron版本大于等于5，需要在BrowserWindow的实例中手动开启webviewTag标签</p>
+<p><img src="https://s1.ax1x.com/2020/07/16/UB3EDJ.png" alt="UB3EDJ.png"></p>
+<p><a target="_blank" rel="noopener" href="https://www.electronjs.org/docs/api/webview-tag#webviewtagprintoptions">webview</a></p>
+<h2 id="BrowserWIndow"><a href="#BrowserWIndow" class="headerlink" title="BrowserWIndow"></a>BrowserWIndow</h2><p><em>使用BrowserWindow创建一个父子窗口</em></p>
+<figure class="highlight javascript"><figcaption><span>示例代码</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> { app, BrowserWindow } = <span class="built_in">require</span>(<span class="string">"electron"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> createWindow = <span class="function">() =&gt;</span> {</span><br><span class="line">  <span class="keyword">let</span> parent = <span class="keyword">new</span> BrowserWindow();</span><br><span class="line">  <span class="comment">// parent 代表是否放置在父窗体上方</span></span><br><span class="line">  <span class="keyword">let</span> child = <span class="keyword">new</span> BrowserWindow({ parent });</span><br><span class="line"></span><br><span class="line">  parent.loadURL(<span class="string">"https://www.google.com"</span>);</span><br><span class="line">  child.loadURL(<span class="string">"https://www.baidu.com"</span>);</span><br><span class="line"></span><br><span class="line">  parent.show();</span><br><span class="line">  child.show();</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">app.on(<span class="string">'ready'</span>, <span class="function">() =&gt;</span> createWindow())</span><br></pre></td></tr></tbody></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.electronjs.org/docs/api/browser-window">BrowserWindow</a></p>
+<h2 id="Dialog"><a href="#Dialog" class="headerlink" title="Dialog"></a>Dialog</h2><blockquote>
+<p>显示用于打开和保存文件、警报等的本机系统对话框</p>
+</blockquote>
+<figure class="highlight javascript"><figcaption><span>示例代码</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dialog.showMessageBox(child, {</span><br><span class="line">  message: <span class="string">'这是一条信息'</span></span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.electronjs.org/docs/api/dialog#dialogshowmessageboxsyncbrowserwindow-options">Dialog</a></p>
+<article class="message message-immersive is-warning">
+<div class="message-body">
+<i class="fas fa-question-circle mr-2"></i>Something wrong with this article? 
+Click <a target="_blank" rel="noopener" href="https://github.com/blacklisten/nblogs/edit/site/source/_posts/2020/Electron-Learning.md">here</a> 
+to submit your revision.
+</div>
+</article>
+
+<p><a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-size:12px;line-height:1.2;display:inline-block;border-radius:3px" href="https://wallhaven.cc" target="_blank" rel="noopener noreferrer" title="Vector Landscape Vectors by Vecteezy"><span style="display:inline-block;padding:2px 3px"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white" viewBox="0 0 32 32"><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px">Vector Landscape Vectors by Vecteezy</span></a></p>
+<script>
+        document.querySelectorAll('.not-gallery-item')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script></div><div class="article-licensing box"><div class="licensing-title"><p>Electron学习笔记</p><p><a href="https://www.blacklisten.cn/Learning/electron%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://www.blacklisten.cn/Learning/electron%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>blacklisten</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-07-09</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="" rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></p></div></div></div></div></div><div class="article-tags size-small mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Electron/">Electron</a></div><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/css/share.min.css"><div class="social-share"></div><script src="https://cdnjs.loli.net/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button is-info donate"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.jpg" alt="支付宝"></span></a><a class="button is-success donate"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.jpg" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/Configuration/window-terminal%E7%BE%8E%E5%8C%96%F0%9F%92%96/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Window Terminal美化💖</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/Configuration/chocolatey-window%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/"><span class="level-item">Chocolatey Window设计的包管理器</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/disqusjs@1.2.5/dist/disqusjs.css"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script src="https://cdn.jsdelivr.net/npm/disqusjs@1.2.5/dist/disqus.js"></script><script>new DisqusJS({
+            shortname: 'blacklisten',
+            apikey: "exTu1A9AwH0nVWvvCmSVh7H8HoTp4RUkld2NgMecCw2aYahA3g7iDtzNCxP7Quug",
+            siteName: "Blacklisten'blogs",
+            identifier: 'Learning/electron学习笔记/',
+            url: 'https://www.blacklisten.cn/Learning/electron%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/',
+            title: "Electron学习笔记",
+            api: 'https://disqus.skk.moe/disqus/',
+            admin: "blacklisten",
+            adminLabel: "Admin",
+            nesting: 4
+        });</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" id="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="is-flex" href="#webview"><span class="mr-2">1</span><span>webview</span></a></li><li><a class="is-flex" href="#BrowserWIndow"><span class="mr-2">2</span><span>BrowserWIndow</span></a></li><li><a class="is-flex" href="#Dialog"><span class="mr-2">3</span><span>Dialog</span></a></li></ul></div></div><style>.menu-list > li > a.is-active + .menu-list { display: block; }.menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">Blacklisten</a><p class="size-small"><span>&copy; 2021 blacklisten</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="My GitHub" href="https://github.com/blacklisten"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><div id="outdated"><h6>Your browser is out-of-date!</h6><p>Update your browser to view this website correctly.&amp;npsb;<a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p><p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">×</a></p></div><script src="https://cdnjs.loli.net/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js" defer></script><script>window.addEventListener("load", function () {
+            outdatedBrowser({
+                bgColor: '#f25648',
+                color: '#ffffff',
+                lowerThan: 'object-fit' // display on IE11 or below
+            });
+        });</script><!--!--><script src="/js/main.js" defer></script><script src="/js/imaegoo/universe.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script><!-- hexo injector body_end start -->
+    <script>
+    (() => {
+        function switchTab() {
+            if (!location.hash) {
+              return;
+            }
+            Array
+                .from(document.querySelectorAll('.tab-content'))
+                .forEach($tab => {
+                    $tab.classList.add('is-hidden');
+                });
+            Array
+                .from(document.querySelectorAll('.tabs li'))
+                .forEach($tab => {
+                    $tab.classList.remove('is-active');
+                });
+            const $activeTab = document.querySelector(location.hash);
+            if ($activeTab) {
+                $activeTab.classList.remove('is-hidden');
+            }
+            const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+            if ($tabMenu) {
+                $tabMenu.parentElement.classList.add('is-active');
+            }
+        }
+        switchTab();
+        window.addEventListener('hashchange', switchTab, false);
+    })();
+    </script>
+    <!-- hexo injector body_end end --></body></html>
