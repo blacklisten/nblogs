@@ -49,14 +49,14 @@ thumbnail: /gallery/covers/wallhaven-7232p9.jpg
 
 - 去 [ipaddress.com](https://ipaddress.com) 上查找 github.com 对应的 IP 
 - 修改 `hosts` 文件
-  ```bash
+  {% codeblock "bash zsh" %}
     vim /etc/hosts
-  ```
+  {% endcodeblock %}
   追加上 github.com 对应的 IP
 - 刷新 DNS，在终端输入（需要权限）
-  ```bash
+  {% codeblock "bash zsh" %}
     sudo killall -HUP mDNSResponder;say DNS cache has been flushed
-  ```
+  {% endcodeblock %}
 
 ## oh my zsh
 
@@ -100,6 +100,12 @@ source ~/.zshrc
 
 - mv ~/xx ~/yy 将 xx（文件、目录）移动到 yy 下面 这对我从vscode-insider 版本换会正式版本的vscode起了很大作用(不用重复安装插件了，直接移动过去🤣)
 - cp -R 源文件 目标文件 **-R是对目录进行递归操作**
+- Mac自动隐藏/显示程序坞默认是有1s的延迟，消除延迟的方法
+  {% codeblock "bash zsh" %}
+    defaults write com.apple.Dock autohide-delay -float 0 && killall Dock
+    // 恢复默认
+    defaults delete com.apple.Dock autohide-delay && killall Dock
+  {% endcodeblock %}
 
 <br>
 
